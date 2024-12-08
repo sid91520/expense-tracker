@@ -10,7 +10,7 @@ function Newexpenseuserinput(props) {
             props.goingtonewuserinput(expensedata)
         }
   return (
-    <div className='px-[1.5rem] py-[1.5rem] my-10 h-[20rem] w-[23rem] rounded-2xl bg-[#8B5DFF]'>
+    <div className='px-[1.5rem] py-[1.5rem] my-5 sm:my-10 md:my-10 lg:my-10 h-[20rem] w-[23rem] rounded-2xl bg-[#8B5DFF]'>
       <Userinput onsaveUserinputdata={saveUserinputdatahandler}/>
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Expenseproduct(props) {
   return (
-    <div className="text-3xl w-[10.25rem] text-slate-100 font-extrabold">
+    <div className="sm:text-3xl md:text-3xl text-xl text-slate-100 font-extrabold">
         <h1>{props.expensitem}</h1>
       </div>
   )

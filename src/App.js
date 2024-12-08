@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import "./App.css";
 import Expenseitem from "./components/expensecardmain/Expenseitem";
 import ExpensesFilter from "./components/expensedateitem/filterbyYear";
@@ -64,20 +64,33 @@ function App() {
       />
     ));
   }
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
   return (
     <div className="flex flex-col w-full items-center">
-    <div className="text-5xl text-orange-400 font-extrabold">
+    <div className="sm:text-5xl md:text-5xl lg:text-5xl text-2xl  text-orange-400 font-extrabold">
       <h1>Expense tracker</h1>
     </div>
     <Newexpenseuserinput goingtonewuserinput={newxpensecomingfrominput} />
-    <div className="px-[1.5rem] py-[1.5rem] max-md:w-[80rem] max-sm:w-[80rem] w-[70rem] rounded-2xl bg-slate-500">
+    <div className="sm:px-[1.5rem] px-[0.5rem] py-[1.5rem] md:w-[80rem] sm:w-[80rem] w-[22rem] rounded-2xl bg-slate-500">
       <ExpensesFilter
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      <div className="px-[1.5rem] py-[1.5rem]">
-      <Expensechart expenses={filteredExpenses}/></div>
+      <div className="sm:px-[1.5rem] md:px-[1.5rem] sm:py-[1.5rem] md:py-[1.5rem] ">
+      {windowWidth >= 786 && <Expensechart expenses={filteredExpenses} />}</div>
       {expensesContent}
     </div>
   </div>
